@@ -1,6 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
 
+const PRODUCTS = [
+  {
+    icon: '🧕',
+    category: 'Islamic Fashion',
+    desc: 'Elegant and modest clothing for the modern Muslim woman.',
+    items: ['Malaysian Hijabs', 'Abayas', 'Jalabiyas'],
+  },
+  {
+    icon: '🕯️',
+    category: 'Fragrances & Incense',
+    desc: 'Fill your home and heart with beautiful, uplifting scents.',
+    items: ['Incense Sticks', 'Incense Burners', 'Premium Blends'],
+  },
+  {
+    icon: '✨',
+    category: 'Cosmetics & Personal Care',
+    desc: 'Quality cosmetics and personal care products you can trust.',
+    items: ['Cosmetics', 'Skincare', 'Personal Care Products'],
+  },
+  {
+    icon: '🍯',
+    category: 'Natural Products',
+    desc: 'Pure, natural honey — nature\'s finest gift for health and wellness.',
+    items: ['Natural Honey', 'Related Natural Products'],
+  },
+]
+
 function App() {
   const [email, setEmail] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
@@ -14,7 +41,7 @@ function App() {
 
   const handleSubscribe = (e) => {
     e.preventDefault()
-    alert(`Thank you for subscribing, ${email}!`)
+    alert(`Thank you! We'll keep you updated, ${email}.`)
     setEmail('')
   }
 
@@ -37,10 +64,19 @@ function App() {
           </button>
           <ul className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`}>
             <li><a onClick={() => scrollTo('hero')}>Home</a></li>
+            <li><a onClick={() => scrollTo('products')}>Products</a></li>
             <li><a onClick={() => scrollTo('about')}>About</a></li>
-            <li><a onClick={() => scrollTo('services')}>Services</a></li>
             <li><a onClick={() => scrollTo('contact')}>Contact</a></li>
-            <li><a className="nav-cta" onClick={() => scrollTo('contact')}>Get in Touch</a></li>
+            <li>
+              <a
+                className="nav-cta"
+                href="https://wa.me/2348029990303"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Order on WhatsApp
+              </a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -49,114 +85,153 @@ function App() {
       <section id="hero" className="hero">
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          <p className="hero-eyebrow">In the Name of Allah, the Most Gracious</p>
-          <h1 className="hero-title">Baabussalam<br /><span>Islamic World</span></h1>
+          <p className="hero-eyebrow">Islamic Lifestyle • Modest Fashion • Fragrances • Natural Products</p>
+          <h1 className="hero-title">Your Destination for<br /><span>Islamic Living</span></h1>
           <p className="hero-subtitle">
-            A gateway to Islamic knowledge, community, and spiritual growth.
-            Serving the Ummah with sincerity and dedication.
+            Discover quality modest fashion, fragrances, cosmetics, and natural products —
+            curated with care for the Muslim lifestyle.
           </p>
           <div className="hero-actions">
-            <button className="btn btn--primary" onClick={() => scrollTo('about')}>Discover More</button>
-            <button className="btn btn--outline" onClick={() => scrollTo('contact')}>Contact Us</button>
+            <button className="btn btn--primary" onClick={() => scrollTo('products')}>Browse Products</button>
+            <a
+              className="btn btn--whatsapp"
+              href="https://wa.me/2348029990303"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              💬 Chat on WhatsApp
+            </a>
           </div>
         </div>
-        <div className="hero-scroll-hint">
-          <span>↓</span>
-        </div>
+        <div className="hero-scroll-hint"><span>↓</span></div>
       </section>
 
-      {/* ── ABOUT ── */}
-      <section id="about" className="section about-section">
-        <div className="section-inner">
-          <div className="section-label">Who We Are</div>
-          <h2 className="section-title">Rooted in Faith,<br />Built for Community</h2>
-          <div className="about-grid">
-            <div className="about-text">
-              <p>
-                Baabussalam Islamic World is a trusted center for Islamic education, spiritual guidance,
-                and community services. Located in the heart of Ibadan, we have been serving Muslims and
-                non-Muslims alike — promoting understanding, unity, and the timeless teachings of Islam.
-              </p>
-              <p>
-                Our name, <em>Baabussalam</em> — "The Gate of Peace" — reflects our mission: to be an
-                open door for those seeking knowledge, solace, and connection with their Creator.
-              </p>
-              <div className="about-stats">
-                <div className="stat">
-                  <span className="stat-number">15+</span>
-                  <span className="stat-label">Years of Service</span>
-                </div>
-                <div className="stat">
-                  <span className="stat-number">500+</span>
-                  <span className="stat-label">Community Members</span>
-                </div>
-                <div className="stat">
-                  <span className="stat-number">10+</span>
-                  <span className="stat-label">Programs & Classes</span>
-                </div>
-              </div>
-            </div>
-            <div className="about-card">
-              <div className="about-card-icon">☽</div>
-              <blockquote className="about-quote">
-                "And whoever relies upon Allah — then He is sufficient for him. Indeed, Allah will accomplish His purpose."
-                <cite>— Quran 65:3</cite>
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SERVICES ── */}
-      <section id="services" className="section services-section">
+      {/* ── PRODUCTS ── */}
+      <section id="products" className="section products-section">
         <div className="section-inner">
           <div className="section-label">What We Offer</div>
-          <h2 className="section-title">Our Services</h2>
-          <div className="services-grid">
-            {[
-              { icon: '📖', title: 'Quran Education', desc: 'Tajweed classes, Hifz programs, and Quranic studies for all ages — from beginners to advanced.' },
-              { icon: '🕌', title: 'Friday Jumuah', desc: 'Weekly Jumuah prayers and khutbah delivered by knowledgeable scholars of the Deen.' },
-              { icon: '🤲', title: 'Islamic Counselling', desc: 'Spiritual and personal guidance rooted in the Quran and Sunnah for individuals and families.' },
-              { icon: '📚', title: 'Islamic Library', desc: 'Access a curated collection of books, audio lectures, and resources on Islamic sciences.' },
-              { icon: '👨‍👩‍👧', title: 'Youth Programs', desc: "Engaging programs to nurture the next generation's faith, character, and sense of purpose." },
-              { icon: '🌙', title: 'Ramadan Programs', desc: 'Special Tarawih prayers, Iftar gatherings, Laylatul Qadr events, and charity initiatives.' },
-            ].map((s) => (
-              <div className="service-card" key={s.title}>
-                <div className="service-icon">{s.icon}</div>
-                <h3 className="service-title">{s.title}</h3>
-                <p className="service-desc">{s.desc}</p>
+          <h2 className="section-title">Our Product Range</h2>
+          <div className="products-grid">
+            {PRODUCTS.map((p) => (
+              <div className="product-card" key={p.category}>
+                <div className="product-icon">{p.icon}</div>
+                <h3 className="product-title">{p.category}</h3>
+                <p className="product-desc">{p.desc}</p>
+                <ul className="product-items">
+                  {p.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <a
+                  className="product-enquire"
+                  href={`https://wa.me/2348029990303?text=Hi! I'm interested in your ${p.category}.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Enquire Now →
+                </a>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CONTACT BANNER ── */}
+      {/* ── ABOUT ── */}
+      <section id="about" className="section about-section">
+        <div className="section-inner">
+          <div className="about-grid">
+            <div className="about-card">
+              <div className="about-card-icon">☽</div>
+              <h3 className="about-card-heading">Our Promise</h3>
+              <p className="about-card-text">
+                "Quality Islamic lifestyle products, delivered with care and convenience."
+              </p>
+            </div>
+            <div className="about-text">
+              <div className="section-label">About Us</div>
+              <h2 className="section-title">Who We Are</h2>
+              <p>
+                Baabussalam Islamic World is an Islamic lifestyle and retail business offering a
+                carefully selected range of products — from modest fashion and fragrances to
+                cosmetics, natural honey, and more.
+              </p>
+              <p>
+                Our aim is to make quality Islamic lifestyle products accessible to every customer
+                through convenient shopping, reliable service, and a warm, welcoming experience.
+              </p>
+              <p>
+                Whether you're looking for the perfect hijab, a beautiful fragrance, or pure natural
+                honey, Baabussalam Islamic World is your trusted destination.
+              </p>
+              <a
+                className="btn btn--primary about-cta"
+                href="https://wa.me/2348029990303?text=Hi! I'd like to know more about your products."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                💬 Get in Touch
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHATSAPP BANNER ── */}
+      <section className="whatsapp-banner">
+        <div className="whatsapp-banner-inner">
+          <div className="whatsapp-banner-text">
+            <h2>Ready to Order?</h2>
+            <p>Browse our catalogue, ask questions, and place your order easily via WhatsApp.</p>
+          </div>
+          <div className="whatsapp-banner-actions">
+            <a
+              className="btn btn--whatsapp"
+              href="https://wa.me/2348029990303"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              💬 +234 802 999 0303
+            </a>
+            <a
+              className="btn btn--whatsapp"
+              href="https://wa.me/2349075804375"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              💬 +234 907 580 4375
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CONTACT ── */}
       <section id="contact" className="section contact-section">
         <div className="contact-inner">
-          <h2 className="contact-title">Come Visit Us</h2>
-          <p className="contact-sub">We'd love to welcome you. Drop by, call, or send us a message.</p>
+          <h2 className="contact-title">Contact Us</h2>
+          <p className="contact-sub">Reach out via WhatsApp or phone to enquire about products and place your order.</p>
           <div className="contact-cards">
             <div className="contact-card">
-              <span className="contact-card-icon">📍</span>
-              <h4>Address</h4>
-              <p>Shop 37, Dick Road, Aleshinloye, Ibadan.</p>
-            </div>
-            <div className="contact-card">
               <span className="contact-card-icon">📞</span>
-              <h4>Phone</h4>
-              <a href="tel:+2348029990303">+234 802 999 0303</a>
+              <h4>Phone / WhatsApp</h4>
+              <a href="https://wa.me/2348029990303" target="_blank" rel="noopener noreferrer">+234 802 999 0303</a>
+              <a href="https://wa.me/2349075804375" target="_blank" rel="noopener noreferrer">+234 907 580 4375</a>
             </div>
             <div className="contact-card">
-              <span className="contact-card-icon">✉️</span>
-              <h4>Email</h4>
-              <a href="mailto:info@baabussalam.org">info@baabussalam.org</a>
+              <span className="contact-card-icon">🛍️</span>
+              <h4>How to Order</h4>
+              <p>Browse our products, message us on WhatsApp, and we'll guide you through checkout and payment.</p>
+            </div>
+            <div className="contact-card">
+              <span className="contact-card-icon">⏰</span>
+              <h4>Response Time</h4>
+              <p>We aim to respond to all enquiries promptly. Don't hesitate to reach out!</p>
             </div>
           </div>
 
           {/* Newsletter */}
           <div className="newsletter">
             <p className="newsletter-label">Stay Updated</p>
+            <p className="newsletter-sub">Subscribe to hear about new arrivals and special offers.</p>
             <form className="newsletter-form" onSubmit={handleSubscribe}>
               <input
                 type="email"
@@ -177,27 +252,26 @@ function App() {
 
           <div className="footer-col">
             <h2 className="brand-title">Baabussalam Islamic World</h2>
-            <p>Promoting Islamic values, knowledge, and community.</p>
+            <p>Islamic Lifestyle • Modest Fashion • Fragrances • Natural Products</p>
           </div>
 
           <div className="footer-col">
-            <h3>Quick Links</h3>
+            <h3>Products</h3>
             <ul>
-              <li><a onClick={() => scrollTo('hero')}>Home</a></li>
-              <li><a onClick={() => scrollTo('about')}>About Us</a></li>
-              <li><a onClick={() => scrollTo('services')}>Services</a></li>
-              <li><a onClick={() => scrollTo('contact')}>Contact</a></li>
+              <li><a onClick={() => scrollTo('products')}>Islamic Fashion</a></li>
+              <li><a onClick={() => scrollTo('products')}>Fragrances & Incense</a></li>
+              <li><a onClick={() => scrollTo('products')}>Cosmetics & Personal Care</a></li>
+              <li><a onClick={() => scrollTo('products')}>Natural Products</a></li>
             </ul>
           </div>
 
           <div className="footer-col">
             <h3>Contact Us</h3>
-            <p>Shop 37, Dick Road, Aleshinloye, Ibadan.</p>
             <p>
-              <a href="tel:+2348029990303" target="_blank" rel="noopener noreferrer">+234 802 999 0303</a>
+              <a href="https://wa.me/2348029990303" target="_blank" rel="noopener noreferrer">+234 802 999 0303</a>
             </p>
             <p>
-              <a href="mailto:info@baabussalam.org">info@baabussalam.org</a>
+              <a href="https://wa.me/2349075804375" target="_blank" rel="noopener noreferrer">+234 907 580 4375</a>
             </p>
           </div>
 
